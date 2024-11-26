@@ -52,7 +52,7 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             >
             <Image
-                src="/k3.jpg"
+                src="/k3.JPG"
                 alt="Kevin Farokhrouz - Photo"
                 width={256}
                 height={256}
