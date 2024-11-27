@@ -93,7 +93,7 @@ function ProjectCard({
           backgroundColor: "#4A5568",
         }}
       >
-        <div className="relative h-56 mb-4">
+        <div className="relative w-full aspect-w-16 aspect-h-9 mb-4">
           <Image
             src={image}
             alt={title}
