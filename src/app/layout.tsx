@@ -15,7 +15,7 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: 'k3.jpg',
+        url: '/kevinphoto.jpg',
         width: 1200,
         height: 630,
         alt: 'Kevin Farokhrouz'
