@@ -8,7 +8,22 @@ export const metadata = {
   description: `Good morning, and in case I don't see ya, good afternoon, good evening, and good night!`,
   keywords: ["Kevin", "Farokhrouz", "Kevin Farokhrouz", "Developer", "Full Stack", "Software", "Software Engineer"],
   authors: [{ name: "Kevin Farokhrouz" }],
-}
+  openGraph: {
+    title: 'Kevin Farokhrouz',
+    description: `Good morning, and in case I don't see ya, good afternoon, good evening, and good night!`,
+    url: 'https://www.kevinrouz.dev',
+    type: 'website',
+    images: [
+      {
+        url: 'k3.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Kevin Farokhrouz'
+      }
+    ]
+  }
+};
+
 
 export default function RootLayout({
   children,
