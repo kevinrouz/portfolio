@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { GiFlyingFlag } from "react-icons/gi";
 import { FaFlagCheckered } from "react-icons/fa";
 import confetti from "canvas-confetti";
-import Image from 'next/image';
 
 const ProgressBar: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -28,7 +27,7 @@ const ProgressBar: React.FC = () => {
               if (carRef.current) {
                 const carPosition = carRef.current.getBoundingClientRect();
                 confetti({
-                  particleCount: 100,
+                  particleCount: 35,
                   spread: 160,
                   origin: {
                     x: (carPosition.left + carPosition.right) / 2 / window.innerWidth,
@@ -74,7 +73,7 @@ const ProgressBar: React.FC = () => {
             duration: 0.8,
           }}
         >
-          <Image
+          <img
             src="/s2ky.png"
             alt="Progress Car"
             className="h-5 w-auto transform scale-150"
