@@ -2,16 +2,12 @@
 
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FaChevronDown, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { Typed } from 'react-typed';
-import { Tomorrow } from 'next/font/google';
-import { Anta } from 'next/font/google';
-import { Saira } from 'next/font/google';
 import Image from 'next/image';
 
-const tomorrow = Tomorrow({ weight: '500', subsets: ['latin'] });
-const anta = Anta({ weight: '400', subsets: ['latin'] });
-const saira = Saira({ weight: '500', subsets: ['latin'] });
+import { primaryFont } from '../utils/fonts';
+import BouncingChevron from './BouncingChevron';
 
 const roles = [
   'Computer Science Student',
@@ -24,7 +20,6 @@ const roles = [
 
 export default function Hero() {
   const typedRef = useRef<HTMLSpanElement>(null);
-  const primaryFont = saira.className || tomorrow.className || anta.className;
 
   useEffect(() => {
     if (typedRef.current) {
@@ -46,7 +41,7 @@ export default function Hero() {
   return (
     <section className={`${primaryFont} h-screen flex flex-col justify-center items-center text-center px-4`}>
       <motion.div
-        className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden mb-6"
+        className="w-56 h-56 rounded-full overflow-hidden mb-6"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
@@ -114,14 +109,7 @@ export default function Hero() {
         <span ref={typedRef}></span>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="animate-bounce"
-      >
-        <FaChevronDown size={24} />
-      </motion.div>
+      <BouncingChevron />
     </section>
   );
 }
