@@ -8,7 +8,7 @@ import confetti from "canvas-confetti";
 
 const ProgressBar: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
-  const [totalSections, setTotalSections] = useState(3);
+  const [totalSections, setTotalSections] = useState(0);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const carRef = useRef<HTMLDivElement>(null);
 

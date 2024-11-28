@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import About from './components/About';
 import ProgressBar from './components/ProgressBar';
+import Experience from './components/Experience';
 
 export default function Home() {
   const ref = useRef(null);
@@ -23,10 +24,13 @@ export default function Home() {
       <motion.div className="section" style={{ opacity, scale }}>
         <Hero />
       </motion.div>
-      <div className="section">
+      <div className="section mt-10">
         <About />
       </div>
-      <div className="section">
+      <div className="section mt-10">
+        <Experience />
+      </div>
+      <div className="section mt-10">
         <Projects />
       </div>
     </main>

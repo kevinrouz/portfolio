@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 import { SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly } from 'react-icons/si';
+import { primaryFont } from '../utils/fonts';
 
 const projects = [
   {
@@ -51,7 +52,7 @@ const projects = [
 export default function Projects() {
   return (
     <section className="py-20 px-4 md:px-8">
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Projects</h2>
+      <h2 className={`text-3xl md:text-4xl font-bold mb-12 text-center ${primaryFont}`}>Projects</h2>
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <ProjectCard key={project.id} {...project} />
@@ -105,7 +106,7 @@ function ProjectCard({
         initial={{ opacity: 0, y: 50 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.5 }}
-        className="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-all duration-300 ease-out"
+        className={`bg-gray-800 p-6 rounded-lg shadow-lg transform transition-all duration-300 ease-out ${primaryFont}`}
         whileHover={{
           scale: 1.05,
           y: -10,
