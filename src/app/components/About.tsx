@@ -27,7 +27,7 @@ export default function About() {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
       >
-        Hi, I'm Kevin! I'm a third-year Computer Science student passionate about software engineering,
+        Hey, I&apos;m Kevin! I&apos;m a third-year Computer Science student passionate about software engineering,
         AI, and creating meaningful digital experiences. With a focus on full-stack development and leading teams,
         my goal is to build innovative solutions that have a real impact. In my free time,
         I enjoy exploring web development, diving into machine learning, and picking up knowledge

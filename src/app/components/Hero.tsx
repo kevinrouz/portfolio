@@ -25,8 +25,8 @@ export default function Hero() {
     if (typedRef.current) {
       const typed = new Typed(typedRef.current, {
         strings: roles,
-        typeSpeed: 40,
-        backSpeed: 50,
+        typeSpeed: 50,
+        backSpeed: 30,
         loop: true,
         showCursor: true,
         cursorChar: '|',
