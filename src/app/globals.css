@@ -12,10 +12,11 @@ body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
     to bottom right,
-    transparent,
-    rgb(var(--background-end-rgb))
-  )
-  rgb(var(--background-start-rgb));
+    rgba(var(--background-start-rgb), 0.8) 0%, 
+    rgb(var(--background-start-rgb)) 30%, 
+    rgb(var(--background-end-rgb)) 70%, 
+    rgba(var(--background-end-rgb), 0.8) 100% 
+  );
 }
 
 /* Custom scrollbar styles */
