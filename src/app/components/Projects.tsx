@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
-import { SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly } from 'react-icons/si';
+import { SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly } from 'react-icons/si';
 
 const projects = [
   {
@@ -11,7 +11,7 @@ const projects = [
     techstack: ['Next.js', 'SQLite', 'Chart.js', 'Typescript', 'Tailwind CSS'],
     repo: 'https://github.com/acmuta/mavgrades',
     link: 'https://www.mavgrades.com/',
-    description: 'Director and lead developer: A platform for UTA students to view and compare course/professor grade distributions. Trusted by over 5,000 students.',
+    description: 'Project director and lead developer: A platform for UTA students to view and compare course/professor grade distributions. Trusted by over 5,000 students.',
   },
   {
     id: 2,
@@ -29,6 +29,23 @@ const projects = [
     repo: 'https://github.com/KevinRouz/Cluster',
     description: 'A user-friendly mobile app to facilitate group communication among high school and university students.',
   },
+  {
+    id: 4,
+    image: '/acmuta.png',
+    title: 'ACM UTA Site',
+    techstack: ['Next.js', 'Typescript', 'Tailwind CSS'],
+    repo: 'https://github.com/acmuta/acmuta-site/',
+    link: 'https://www.acmuta.com/',
+    description: 'The official site for the ACM Chapter at UT Arlington.',
+  },
+  // {
+  //   id: 5,
+  //   image: '/knownonsense.png',
+  //   title: 'KnowNonsense',
+  //   techstack: ['Unreal Engine', 'C++', 'Next.js', 'MongoDB', 'FastAPI', 'Typescript'],
+  //   repo: '',
+  //   description: 'A real-time VR application for truth validation and fact-checking for debate points, with transcripts and feedback available on the web.',
+  // }
 ];
 
 export default function Projects() {
@@ -77,6 +94,9 @@ function ProjectCard({
       Dart: <SiDart />,
       Firebase: <SiFirebase />,
       Plotly: <SiPlotly />,
+      FastAPI: <SiFastapi />,
+      MongoDB: <SiMongodb />,
+      "Unreal Engine": <SiUnrealengine />,
     };
   
     return (
