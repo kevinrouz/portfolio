@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
-import { SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly } from 'react-icons/si';
+import { SiGooglecalendar, SiGithub, SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly } from 'react-icons/si';
 import { primaryFont } from '../utils/fonts';
 
 const projects = [
@@ -34,7 +34,7 @@ const projects = [
     id: 4,
     image: '/acmuta.png',
     title: 'ACM UTA Site',
-    techstack: ['Next.js', 'Typescript', 'Tailwind CSS'],
+    techstack: ['Next.js', 'Typescript', 'Tailwind CSS', 'GitHub API', 'Google API'],
     repo: 'https://github.com/acmuta/acmuta-site/',
     link: 'https://www.acmuta.com/',
     description: 'The official site for the ACM Chapter at UT Arlington.',
@@ -94,10 +94,13 @@ function ProjectCard({
       Flutter: <SiFlutter />,
       Dart: <SiDart />,
       Firebase: <SiFirebase />,
+      FireAuth: <SiFirebase />,
       Plotly: <SiPlotly />,
       FastAPI: <SiFastapi />,
       MongoDB: <SiMongodb />,
       "Unreal Engine": <SiUnrealengine />,
+      "GitHub API": <SiGithub />,
+      "Google API": <SiGooglecalendar />,
     };
   
     return (
