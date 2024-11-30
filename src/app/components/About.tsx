@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { primaryFont } from '../utils/fonts';
 import BouncingChevron from './BouncingChevron';
-import { FaJava, FaPython, FaReact, FaGithub, FaNodeJs } from 'react-icons/fa';
+import { FaJava, FaPython, FaReact, FaGithub, FaNodeJs, FaGitAlt } from 'react-icons/fa';
 import { SiFlask, SiTypescript, SiJavascript, SiTailwindcss, SiKubernetes, SiMongodb, SiFirebase, SiPostgresql, SiMysql, SiCplusplus, SiUnrealengine, SiUnity, SiKotlin, SiDart, SiFastapi } from 'react-icons/si';
 import { TbBrandNextjs } from 'react-icons/tb';
 import { CiDatabase } from "react-icons/ci";
@@ -38,6 +38,7 @@ const categories = [
   {
     title: 'Dev Tools',
     items: [
+      { name: 'Git', icon: <FaGitAlt /> },
       { name: 'GitHub', icon: <FaGithub /> },
       { name: 'Kubernetes', icon: <SiKubernetes /> },
       { name: 'Firebase', icon: <SiFirebase /> },
