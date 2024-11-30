@@ -6,14 +6,14 @@ import { primaryFont } from '../utils/fonts';
 const experiences = [
   {
     id: 1,
-    company: 'ITLab at UTA',
+    company: 'ITLab @ UTA',
     role: 'Research Assistant',
     location: 'Arlington, TX',
     timeFrame: 'Aug 2023 - Present',
     description: [
       'Leading the development of a dashboard for the analysis and visualization of large data sets utilizing Multi-Layer Networks (MLN), backed by IEEE-published research.',
-      'Developed an analysis module integrating community detection algorithms and a custom expression evaluator to process MLN layers and detect communities efficiently.',
-      'Leveraged Flask and Python for backend API; React.js for frontend functionality.',
+      'Engineered a robust backend analysis pipeline that leverages community detection algorithms and a custom expression evaluator to efficiently process and interpret MLN layers for actionable insights.',
+      'Utilized Flask and Python for API development and React.js for an intuitive user interface.',
     ],
   },
   {
