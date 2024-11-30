@@ -3,8 +3,7 @@ import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 import { SiGooglecalendar, SiGithub, SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly, SiTensorflow, SiNumpy, SiPandas, SiGooglemaps, SiScikitlearn } from 'react-icons/si';
 import { primaryFont } from '../utils/fonts';
-import { GrPieChart } from 'react-icons/gr';
-
+import { IoMail, IoAnalytics, IoApertureSharp, IoBarChart, IoStatsChart } from 'react-icons/io5';
 const projects = [
   {
     id: 1,
@@ -115,9 +114,13 @@ function ProjectCard({
       TensorFlow: <SiTensorflow />,
       NumPy: <SiNumpy />,
       Pandas: <SiPandas />,
-      Matplotlib: <GrPieChart />,
+      Matplotlib: <IoStatsChart />,
       "Google Maps API": <SiGooglemaps />,
       Scikitlearn: <SiScikitlearn />,
+      Bokeh: <IoApertureSharp />,
+      NetworkX: <IoAnalytics /> ,
+      Pyviz: <IoBarChart />,
+      SendGrid: <IoMail />,
     };
   
     return (
