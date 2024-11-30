@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
-import { SiGooglecalendar, SiGithub, SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly } from 'react-icons/si';
+import { SiGooglecalendar, SiGithub, SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly, SiTensorflow, SiNumpy, SiPandas, SiGooglemaps, SiScikitlearn } from 'react-icons/si';
 import { primaryFont } from '../utils/fonts';
+import { GrPieChart } from 'react-icons/gr';
 
 const projects = [
   {
@@ -47,6 +48,15 @@ const projects = [
     repo: 'https://github.com/KevinRouz/KnowNonsenseVR',
     description: 'A real-time VR application for truth validation and fact-checking for debate points, with transcripts and feedback available on the web.',
   },
+  {
+    id: 6,
+    image: '/geoWizard.png',
+    title: 'GeoWizard',
+    techstack: ['TensorFlow', 'Python', 'NumPy', 'Pandas', 'Matplotlib', 'Scikitlearn', 'Google Maps API'],
+    repo: 'https://github.com/KevinRouz/GeoGuessr-AI',
+    description: 'A machine learning model trained on Google Maps Street View images to predict the location of a given image.',
+  },
+  
 
 ];
 
@@ -102,6 +112,12 @@ function ProjectCard({
       "Unreal Engine": <SiUnrealengine />,
       "GitHub API": <SiGithub />,
       "Google API": <SiGooglecalendar />,
+      TensorFlow: <SiTensorflow />,
+      NumPy: <SiNumpy />,
+      Pandas: <SiPandas />,
+      Matplotlib: <GrPieChart />,
+      "Google Maps API": <SiGooglemaps />,
+      Scikitlearn: <SiScikitlearn />,
     };
   
     return (
