@@ -111,6 +111,7 @@ export default function About() {
         ))}
       </div>
       <BouncingChevron mt="mt-6" />
+      <div className="mt-20 mb-20"></div>
     </section>
   );
 }

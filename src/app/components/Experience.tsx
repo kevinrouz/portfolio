@@ -41,8 +41,8 @@ export default function Experiences() {
           </div>
         ))}
       </div>
-      <div className="flex justify-center mt-8">
-        <BouncingChevron />
+      <div className="flex justify-center">
+        <BouncingChevron mt="mt-8" />
       </div>
     </section>
   );
