@@ -19,7 +19,7 @@ export default function Home() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   return (
-    <main ref={ref} className="min-h-screen">
+    <main ref={ref} className="min-h-screen flex flex-col justify-between">
       <ProgressBar />
       <motion.div className="section" style={{ opacity, scale }}>
         <Hero />
@@ -33,6 +33,12 @@ export default function Home() {
       <div className="section mt-10">
         <Projects />
       </div>
+      <p className="text-center py-2 mt-4 mb-2">
+        &copy; {new Date().getFullYear()} Kevin Farokhrouz. All Rights Reserved. 
+        <a href="/breakdown" className="ml-2 hover:underline">
+          Do NOT click me.
+        </a>
+      </p>
     </main>
   );
 }

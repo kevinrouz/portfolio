@@ -101,7 +101,7 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        className={`${primaryFont} text-xl md:text-2xl mb-12 h-8`}
+        className={`${primaryFont} text-xl md:text-2xl h-8`}
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -109,7 +109,7 @@ export default function Hero() {
         <span ref={typedRef}></span>
       </motion.div>
 
-      <BouncingChevron />
+      <BouncingChevron mt="mt-12" />
     </section>
   );
 }
