@@ -39,14 +39,15 @@ const projects = [
     link: 'https://www.acmuta.com/',
     description: 'The official site for the ACM Chapter at UT Arlington.',
   },
-  // {
-  //   id: 5,
-  //   image: '/knownonsense.png',
-  //   title: 'KnowNonsense',
-  //   techstack: ['Unreal Engine', 'C++', 'Next.js', 'MongoDB', 'FastAPI', 'Typescript'],
-  //   repo: '',
-  //   description: 'A real-time VR application for truth validation and fact-checking for debate points, with transcripts and feedback available on the web.',
-  // }
+  {
+    id: 5,
+    image: '/knownonsense.png',
+    title: 'KnowNonsense',
+    techstack: ['Unreal Engine', 'C++', 'Next.js', 'MongoDB', 'FastAPI', 'Typescript'],
+    repo: 'https://github.com/KevinRouz/KnowNonsenseVR',
+    description: 'A real-time VR application for truth validation and fact-checking for debate points, with transcripts and feedback available on the web.',
+  },
+
 ];
 
 export default function Projects() {
