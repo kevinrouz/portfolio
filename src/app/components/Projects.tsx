@@ -128,15 +128,15 @@ function ProjectCard({
         </div>
         <h3 className="text-xl font-semibold mb-2">{title}</h3>
         <div className="flex flex-wrap gap-2 mb-4">
-          {techstack.map((tech) => (
-            <span
-              key={tech}
-              className="bg-gray-700 text-gray-300 text-sm px-3 py-1 rounded-full shadow-sm flex items-center gap-2"
-            >
-              {techIcons[tech] || null}
-              {tech}
-            </span>
-          ))}
+        {techstack.map((tech) => (
+          <span
+            key={tech}
+            className="bg-gray-700 text-white text-sm px-3 py-1 rounded-full shadow-sm flex items-center gap-2"
+          >
+            <span className="text-blue-400">{techIcons[tech] || null}</span>
+            {tech}
+          </span>
+        ))}
         </div>
         <p className="text-gray-300 mb-4">{description}</p>
         <div className="flex gap-4">
