@@ -57,7 +57,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className={`${primaryFont} min-h-screen flex flex-col justify-center items-center text-center px-4`}
+      className={`${primaryFont} min-h-screen flex flex-col justify-center items-center text-center px-4 mt-20`}
     >
       <motion.h2
         className="text-4xl md:text-5xl font-bold mb-8"
