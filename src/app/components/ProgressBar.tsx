@@ -127,7 +127,7 @@ const ProgressBar: React.FC = () => {
                 left: `${(index / (totalSections - 1)) * 100}%`,
                 transform: "translateX(-50%)",
               }}
-              className={`absolute cursor-pointer text-xs text-gray-300 ${
+              className={`absolute cursor-pointer text-xs text-gray-300 select-none ${
                 index === currentSection ? "font-bold text-white" : ""
               }`}
             >
