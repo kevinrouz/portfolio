@@ -52,7 +52,7 @@ const projects = [
     image: '/geoWizard.png',
     title: 'GeoWizard',
     techstack: ['TensorFlow', 'Python', 'NumPy', 'Pandas', 'Matplotlib', 'Scikitlearn', 'Google Maps API'],
-    repo: 'https://github.com/KevinRouz/GeoGuessr-AI',
+    repo: 'https://github.com/KevinRouz/geoguessr',
     description: 'A machine learning model trained on Google Maps Street View images to predict the location of a given image.',
   },
   
