@@ -12,7 +12,7 @@ const experiences = [
     timeFrame: 'Aug 2023 - Present',
     description: [
       'Leading the development of a dashboard for the analysis and visualization of large data sets utilizing Multi-Layer Networks (MLN), backed by IEEE-published research.',
-      'Engineered a robust backend analysis pipeline that leverages community detection algorithms and a custom expression evaluator to efficiently process and interpret MLN layers for actionable insights.',
+      'Engineered a robust backend analysis pipeline in Flask and Python, that leverages community detection algorithms and a custom expression evaluator to efficiently process and interpret MLN layers for actionable insights.',
       'Utilized Flask and Python for API development and React.js for an intuitive user interface.',
     ],
   },
