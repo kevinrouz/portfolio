@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
-import { SiGooglecalendar, SiGithub, SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly, SiTensorflow, SiNumpy, SiPandas, SiGooglemaps, SiScikitlearn } from 'react-icons/si';
+import { SiGooglecalendar, SiDiscord, SiGithub, SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly, SiTensorflow, SiNumpy, SiPandas, SiGooglemaps, SiScikitlearn } from 'react-icons/si';
 import { primaryFont } from '../utils/fonts';
 import { IoMail, IoAnalytics, IoApertureSharp, IoBarChart, IoStatsChart } from 'react-icons/io5';
 const projects = [
@@ -32,6 +32,14 @@ const projects = [
   },
   {
     id: 4,
+    image: '/sisyphus.png',
+    title: 'Sisyphus Counter',
+    techstack: ['Python', 'MongoDB', 'Discord.py'],
+    repo: 'https://github.com/KevinRouz/SisyphusCounter',
+    description: 'A popular Discord bot hosting a collaborative counting game, engaging hundreds of daily users across multiple servers with leaderboards and high score tracking.'
+  },
+  {
+    id: 5,
     image: '/acmuta.png',
     title: 'ACM UTA Site',
     techstack: ['Next.js', 'Typescript', 'Tailwind CSS', 'GitHub API', 'Google API'],
@@ -40,7 +48,7 @@ const projects = [
     description: 'The official site for the ACM Chapter at UT Arlington.',
   },
   {
-    id: 5,
+    id: 6,
     image: '/knownonsense.png',
     title: 'KnowNonsense',
     techstack: ['Unreal Engine', 'C++', 'Next.js', 'MongoDB', 'FastAPI', 'Typescript'],
@@ -48,7 +56,7 @@ const projects = [
     description: 'A real-time VR application for truth validation and fact-checking for debate points, with transcripts and feedback available on the web.',
   },
   {
-    id: 6,
+    id: 7,
     image: '/geoWizard.png',
     title: 'GeoWizard',
     techstack: ['TensorFlow', 'Python', 'NumPy', 'Pandas', 'Matplotlib', 'Scikitlearn', 'Google Maps API'],
@@ -88,7 +96,7 @@ function ProjectCard({
     link?: string;
   }) {
     const [ref, inView] = useInView({
-      triggerOnce: false,
+      triggerOnce: true,
       threshold: 0.1,
     });
   
@@ -121,6 +129,7 @@ function ProjectCard({
       NetworkX: <IoAnalytics /> ,
       Pyviz: <IoBarChart />,
       SendGrid: <IoMail />,
+      "Discord.py": <SiDiscord />,
     };
   
     return (

@@ -63,7 +63,7 @@ export default function About() {
         className="text-4xl md:text-5xl font-bold mb-8"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         About Me
@@ -72,7 +72,7 @@ export default function About() {
         className="text-lg md:text-xl text-gray-200 max-w-3xl mb-6"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
       >
         Hey, I&apos;m Kevin! I&apos;m a third-year Computer Science student passionate about software engineering,
@@ -88,7 +88,7 @@ export default function About() {
             className="bg-gray-800 rounded-lg p-6 text-left"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: 'easeOut' }}
           >
             <h3
