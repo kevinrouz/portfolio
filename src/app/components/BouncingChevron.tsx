@@ -25,6 +25,7 @@ export default function BouncingChevron({ mt }: BouncingChevronProps) {
             ease: 'easeInOut',
           },
         }}
+        style={{ color: 'rgba(121, 161, 226, 1)' }}
       >
         <FaChevronDown size={24} />
       </motion.div>
