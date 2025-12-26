@@ -8,6 +8,35 @@
   --background-end-rgb: 26, 32, 44;
 }
 
+/* GPU acceleration and performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize animations for GPU */
+@media (prefers-reduced-motion: no-preference) {
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  [style*="will-change"] {
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -19,9 +48,21 @@
 ::-webkit-scrollbar-thumb {
   background: #4a5568;
   border-radius: 5px;
+  will-change: background;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #718096;
 }
 
+/* Optimize sections for scrolling performance */
+.section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1020px;
+}
+
+/* Optimize images and media */
+img, video, canvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}

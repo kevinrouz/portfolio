@@ -48,7 +48,7 @@ const experiences = [
     location: 'Arlington, TX',
     timeFrame: 'Aug 2023 - May 2025',
     description: [
-      'Lead the Multi-Layered Networks Team developing the MLN Dashboard',
+      'Led the Multi-Layered Networks Team developing the MLN Dashboard',
       'Published in: BDA 2024, VLDB 2025',
     ],
   },
@@ -60,7 +60,7 @@ const experiences = [
     location: 'Arlington, TX',
     timeFrame: 'Aug 2024 - Aug 2025',
     description: [
-      'Lead the largest team at UTA building software projects by students, for students',
+      'Led the largest team at UTA building software projects by students, for students',
       'Collectively, ACM Create\'s applications have been used by over 40% of the student population',
     ],
   },

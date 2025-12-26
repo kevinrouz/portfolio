@@ -1,9 +1,16 @@
 'use client';
 
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
-import { ContactShadows, Environment, shaderMaterial, useGLTF, AdaptiveDpr, AdaptiveEvents } from '@react-three/drei';
-import { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { ContactShadows, Environment, shaderMaterial, useGLTF, AdaptiveDpr, AdaptiveEvents, Html } from '@react-three/drei';
+import { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import * as THREE from 'three';
+import { AnimatePresence, motion } from 'framer-motion';
+import React from 'react';
+
+import Hero from './Hero';
+import About from './About';
+import Experience from './Experience';
+import Projects from './Projects';
 
 // Grid shader material
 const GridShaderMaterial = shaderMaterial(
@@ -114,7 +121,7 @@ const MODEL_POSITION_OFFSET: [number, number, number] = [0, 0, 0];
 
 // Motion tuning
 const MIN_SIDE_X = 1.85;
-const EDGE_MARGIN = 1.0;
+const EDGE_MARGIN = 5.0;
 
 // Timing
 const DRIVE_DURATION = 0.95; 
@@ -140,8 +147,13 @@ const YAW_REST_RIGHT = -Math.PI / 4;
 const SUSPENSION_BOUNCE_FREQ = 4.5; 
 const SUSPENSION_DAMPING = 0.25; 
 
+// Board motion tuning
+const BOARD_POS_LAMBDA = 7;
+const BOARD_YAW_LAMBDA = 9;
+
 type CarOverlayProps = {
   activeSection: number;
+  onSectionHeight?: (sectionIndex: number, heightPx: number) => void;
 };
 
 // Store for sharing car position between components
@@ -153,8 +165,9 @@ const carVelocityStore = {
   velocity: 0,
 };
 
-export default function CarOverlay({ activeSection }: CarOverlayProps) {
+export default function CarOverlay({ activeSection, onSectionHeight }: CarOverlayProps) {
   const [hasModel, setHasModel] = useState<boolean | null>(null);
+  const htmlPortalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let canceled = false;
@@ -173,7 +186,9 @@ export default function CarOverlay({ activeSection }: CarOverlayProps) {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0">
+    <div className="pointer-events-none fixed inset-0 z-40">
+      {/* Portal target for Drei <Html>; keeps WebGL non-interactive while allowing DOM board interaction. */}
+      <div ref={htmlPortalRef} className="pointer-events-none fixed inset-0 z-20" />
       <Canvas
         shadows
         dpr={[0.75, 1.5]}
@@ -183,10 +198,11 @@ export default function CarOverlay({ activeSection }: CarOverlayProps) {
           alpha: true,
           stencil: false,
           depth: true,
+          precision: 'lowp',
         }}
         camera={{ position: [0, 1.15, 4.2], fov: 35, near: 0.1, far: 50 }}
         frameloop="demand"
-        performance={{ min: 0.75 }}
+        performance={{ min: 0.5, max: 1 }}
       >
         <AdaptiveDpr pixelated />
         <AdaptiveEvents />
@@ -196,14 +212,15 @@ export default function CarOverlay({ activeSection }: CarOverlayProps) {
           intensity={1.1}
           position={[5, 6, 4]}
           castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
+          shadow-mapSize-width={512}
+          shadow-mapSize-height={512}
           shadow-camera-near={0.5}
           shadow-camera-far={20}
           shadow-camera-left={-6}
           shadow-camera-right={6}
           shadow-camera-top={6}
           shadow-camera-bottom={-6}
+          shadow-bias={-0.0001}
         />
 
         <Suspense fallback={null}>
@@ -212,12 +229,16 @@ export default function CarOverlay({ activeSection }: CarOverlayProps) {
           <CarRig activeSection={activeSection}>
             {hasModel ? <CarGLTF /> : <PlaceholderCar />}
           </CarRig>
+
+          <WorldBoard activeSection={activeSection} portal={htmlPortalRef} onSectionHeight={onSectionHeight} />
+
           <ContactShadows
             position={[0, GROUND_Y, 0]}
             opacity={0.55}
             blur={2.2}
             far={10}
-            resolution={256}
+            resolution={128}
+            frames={1}
           />
         </Suspense>
         
@@ -239,7 +260,7 @@ function FrameInvalidator() {
 // Grid floor component, reuse geometry
 const gridGeometry = new THREE.PlaneGeometry(20, 20, 1, 1);
 
-function GridFloor() {
+const GridFloor = React.memo(() => {
   const materialRef = useRef<THREE.ShaderMaterial & { uTime: number; uCarPosition: THREE.Vector3 }>(null);
 
   useFrame((state) => {
@@ -250,7 +271,12 @@ function GridFloor() {
   });
 
   return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, GROUND_Y - 0.001, 0]} geometry={gridGeometry} frustumCulled>
+    <mesh 
+      rotation={[-Math.PI / 2, 0, 0]} 
+      position={[0, GROUND_Y - 0.001, 0]} 
+      geometry={gridGeometry} 
+      frustumCulled
+    >
       <gridShaderMaterial
         ref={materialRef}
         transparent
@@ -259,7 +285,9 @@ function GridFloor() {
       />
     </mesh>
   );
-}
+});
+
+GridFloor.displayName = 'GridFloor';
 
 // Velocity state for physics based motion
 type VelocityState = {
@@ -280,7 +308,7 @@ type TransitionState = {
   phase: 'accelerate' | 'cruise' | 'brake' | 'drift' | 'settle';
 };
 
-function CarRig({
+const CarRig = React.memo(function CarRig({
   activeSection,
   children,
 }: {
@@ -471,7 +499,9 @@ function CarRig({
       {children}
     </group>
   );
-}
+});
+
+CarRig.displayName = 'CarRig';
 
 // Smooth damp with velocity tracking
 function smoothDamp(
@@ -641,4 +671,203 @@ function lerpAngle(a: number, b: number, t: number): number {
   const twoPi = Math.PI * 2;
   const diff = THREE.MathUtils.euclideanModulo(b - a + Math.PI, twoPi) - Math.PI;
   return a + diff * t;
+}
+
+function WorldBoard({
+  activeSection,
+  portal,
+  onSectionHeight,
+}: {
+  activeSection: number;
+  portal: RefObject<HTMLElement>;
+  onSectionHeight?: (sectionIndex: number, heightPx: number) => void;
+}) {
+  const groupRef = useRef<THREE.Group>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const contentTranslateRef = useRef<HTMLDivElement>(null);
+  const activeSectionRef = useRef<number>(activeSection);
+  const lastScrollRangeBySectionRef = useRef<number[]>([]);
+  const lastReportedHeightBySectionRef = useRef<number[]>([]);
+  const { viewport, camera } = useThree();
+  const boardVelRef = useRef<{ x: number; y: number; z: number; yaw: number; pitch: number }>({
+    x: 0,
+    y: 0,
+    z: 0,
+    yaw: 0,
+    pitch: 0,
+  });
+
+  const sideX = useMemo(() => {
+    return Math.max(MIN_SIDE_X, viewport.width / 2 - EDGE_MARGIN);
+  }, [viewport.width]);
+
+  const carX = useMemo(() => {
+    return activeSection % 2 === 0 ? -sideX : sideX;
+  }, [activeSection, sideX]);
+
+  // Board placement: stay near center, biased opposite the car.
+  const boardX = -carX * 0.20;
+  const boardY = 0.48;
+  // Larger Z brings it closer to the camera (camera z ~ 4.2)
+  const boardZ = 1.85;
+
+  useEffect(() => {
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
+
+  const updateScrollMapping = () => {
+    const container = scrollContainerRef.current;
+    const translateEl = contentTranslateRef.current;
+    if (!container || !translateEl) return;
+
+    const idx = activeSectionRef.current;
+
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('.section'));
+    const sectionEl = sections[idx];
+    if (!sectionEl) return;
+
+    // Measure the currently-active content node. This avoids stale refs during AnimatePresence exit.
+    const activeContentEl = container.querySelector<HTMLElement>(`[data-worldboard-section="${idx}"]`);
+
+    const containerH = container.clientHeight;
+    const measuredContentH = activeContentEl?.scrollHeight ?? 0;
+    const contentH = measuredContentH > 0 ? measuredContentH : 0;
+    const prevScrollRange = lastScrollRangeBySectionRef.current[idx] ?? 0;
+    const scrollRange = Math.max(0, contentH - containerH);
+
+    // Cache last known good range so transitions never briefly map from 0.
+    if (scrollRange > 0 || prevScrollRange === 0) {
+      lastScrollRangeBySectionRef.current[idx] = scrollRange;
+    }
+    const effectiveScrollRange =
+      scrollRange > 0 ? scrollRange : lastScrollRangeBySectionRef.current[idx] ?? 0;
+
+    // Tell the page how tall this checkpoint must be so page scroll reveals full content.
+    if (onSectionHeight) {
+      const desiredHeight = window.innerHeight + effectiveScrollRange;
+      const lastReported = lastReportedHeightBySectionRef.current[idx] ?? 0;
+      if (Math.abs(desiredHeight - lastReported) > 1) {
+        lastReportedHeightBySectionRef.current[idx] = desiredHeight;
+        onSectionHeight(idx, desiredHeight);
+      }
+    }
+
+    const sectionTop = sectionEl.getBoundingClientRect().top + window.scrollY;
+    // Pixel-perfect mapping: page scroll inside the section maps 1:1 to content scroll.
+    // This avoids any snap when checkpoint heights update.
+    const offsetPx = window.scrollY - sectionTop;
+    const y = offsetPx < 0 ? 0 : offsetPx > effectiveScrollRange ? effectiveScrollRange : offsetPx;
+    // Translate content up inside the fixed viewport.
+    translateEl.style.transform = `translate3d(0, ${-y}px, 0)`;
+  };
+
+  useLayoutEffect(() => {
+    let raf2 = 0;
+    const raf1 = window.requestAnimationFrame(() => {
+      raf2 = window.requestAnimationFrame(() => {
+        updateScrollMapping();
+      });
+    });
+
+    const onScroll = () => updateScrollMapping();
+    const onResize = () => updateScrollMapping();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.cancelAnimationFrame(raf1);
+      if (raf2) window.cancelAnimationFrame(raf2);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSection]);
+
+  useFrame((_, delta) => {
+    const group = groupRef.current;
+    if (!group) return;
+
+    const clampedDelta = Math.min(delta, 0.05);
+    const vel = boardVelRef.current;
+
+    // Smoothly animate to the new target instead of snapping.
+    group.position.x = smoothDamp(group.position.x, boardX, vel, 'x', BOARD_POS_LAMBDA, clampedDelta);
+    group.position.y = smoothDamp(group.position.y, boardY, vel, 'y', BOARD_POS_LAMBDA, clampedDelta);
+    group.position.z = smoothDamp(group.position.z, boardZ, vel, 'z', BOARD_POS_LAMBDA, clampedDelta);
+
+    // Yaw to face the camera, then add a slight inward offset.
+    const toCamX = camera.position.x - group.position.x;
+    const toCamZ = camera.position.z - group.position.z;
+    const faceCameraYaw = Math.atan2(toCamX, toCamZ) *.35;
+    const inwardYaw = -Math.sign(boardX) * 0.001;
+    const targetYaw = faceCameraYaw + inwardYaw;
+
+    // Tilt the board upward slightly (top leans toward the camera).
+    const targetPitch = -0.10;
+    group.rotation.x = smoothDampAngle(group.rotation.x, targetPitch, vel, 'pitch', BOARD_YAW_LAMBDA, clampedDelta);
+    group.rotation.z = 0;
+    group.rotation.y = smoothDampAngle(group.rotation.y, targetYaw, vel, 'yaw', BOARD_YAW_LAMBDA, clampedDelta);
+  });
+
+  if (!portal.current) return null;
+
+  return (
+    <group ref={groupRef}>
+      <Html
+        portal={portal}
+        transform
+        center
+        occlude={false}
+        distanceFactor={0.6}
+        zIndexRange={[30, 0]}
+        style={{ willChange: 'transform' }}
+      >
+        <div className="pointer-events-auto" style={{ willChange: 'transform' }}>
+          <div className="bg-gray-900/85 backdrop-blur-md border border-gray-700/70 rounded-2xl shadow-xl overflow-hidden">
+            <div
+              ref={scrollContainerRef}
+              className="max-w-5xl w-[90vw] md:w-[70vw] lg:w-[60vw] max-h-[72vh] overflow-hidden"
+              style={{ willChange: 'transform' }}
+            >
+              <div ref={contentTranslateRef} className="will-change-transform" style={{ willChange: 'transform' }}>
+                <div>
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.div
+                      key={activeSection}
+                      data-worldboard-section={activeSection}
+                      initial={{ opacity: 0, y: 18, scale: 0.985 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -12, scale: 0.985 }}
+                      transition={{ duration: 0.26, ease: 'easeOut' }}
+                      onAnimationComplete={() => {
+                        updateScrollMapping();
+                      }}
+                    >
+                      {activeSection === 0 ? (
+                        <Hero />
+                      ) : activeSection === 1 ? (
+                        <About />
+                      ) : activeSection === 2 ? (
+                        <Experience />
+                      ) : (
+                        <>
+                          <Projects />
+                          <p className="text-center py-2 mt-4 mb-4 text-gray-300">
+                            &copy; {new Date().getFullYear()} Kevin Farokhrouz. All Rights Reserved.
+                            <a href="/secret" className="ml-2 hover:underline font-bold">
+                              Do NOT click me.
+                            </a>
+                          </p>
+                        </>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Html>
+    </group>
+  );
 }

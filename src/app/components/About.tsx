@@ -72,6 +72,7 @@ export default function About() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
+        style={{ willChange: 'transform, opacity' }}
       >
         About Me
       </motion.h2>
@@ -81,6 +82,7 @@ export default function About() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+        style={{ willChange: 'transform, opacity' }}
       >
         Hey, I&apos;m Kevin! I&apos;m a fourth-year Computer Science student at UTA.
         I love building new things, reading the latest research in Machine Learning and AI, 
@@ -95,6 +97,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: 'easeOut' }}
+            style={{ willChange: 'transform, opacity' }}
           >
             <h3
               className="text-2xl text-center font-bold text-white mb-8 pb-3 border-b-2 border-blue-400"

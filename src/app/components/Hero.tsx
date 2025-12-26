@@ -38,12 +38,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className={`${primaryFont} h-screen flex flex-col justify-center items-center text-center px-4`}>
+    <section className={`${primaryFont} flex flex-col justify-center items-center text-center px-4`}>
       <motion.div
-        className="w-56 h-56 rounded-full overflow-hidden mb-6"
+        className="w-56 h-56 rounded-full overflow-hidden mb-6 mt-12"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8 }}
+        style={{ willChange: 'transform, opacity' }}
       >
         <Image
           src="/kevin.jpg"
@@ -59,7 +61,9 @@ export default function Hero() {
         className={`${primaryFont} text-5xl md:text-7xl font-bold mb-2`}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8 }}
+        style={{ willChange: 'transform, opacity' }}
       >
         Kevin Farokhrouz
       </motion.h1>
@@ -68,7 +72,9 @@ export default function Hero() {
         className="flex gap-4 justify-center text-xl md:text-2xl mb-6"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8, delay: 0.2 }}
+        style={{ willChange: 'transform, opacity' }}
       >
         <a
           href="https://github.com/kevinrouz"
@@ -103,7 +109,9 @@ export default function Hero() {
         className={`${primaryFont} text-xl md:text-2xl h-8`}
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8, delay: 0.2 }}
+        style={{ willChange: 'transform, opacity' }}
       >
         <span ref={typedRef}></span>
       </motion.div>

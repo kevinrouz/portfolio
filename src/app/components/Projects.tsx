@@ -143,6 +143,7 @@ function ProjectCard({
           boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)",
           borderColor: "#60A5FA",
         }}
+        style={{ willChange: 'transform, opacity' }}
       >
         <div className="relative w-full aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
           <Image
