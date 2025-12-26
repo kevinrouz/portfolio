@@ -8,13 +8,11 @@
   --background-end-rgb: 26, 32, 44;
 }
 
-/* GPU acceleration and performance optimizations */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optimize animations for GPU */
 @media (prefers-reduced-motion: no-preference) {
   .will-change-transform {
     will-change: transform;
@@ -26,7 +24,6 @@
   }
 }
 
-/* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -55,13 +52,11 @@
   background: #718096;
 }
 
-/* Optimize sections for scrolling performance */
 .section {
   content-visibility: auto;
   contain-intrinsic-size: auto 1020px;
 }
 
-/* Optimize images and media */
 img, video, canvas {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;

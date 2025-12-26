@@ -45,7 +45,6 @@ const ProgressBar: React.FC<ProgressBarProps> = React.memo(({ activeSection }) =
     setLabels(extractedLabels);
 
     return () => {
-      // no-op
     };
   }, [totalSections]);
 

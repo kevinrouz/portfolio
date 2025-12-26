@@ -705,10 +705,10 @@ function WorldBoard({
     return activeSection % 2 === 0 ? -sideX : sideX;
   }, [activeSection, sideX]);
 
-  // Board placement: stay near center, biased opposite the car.
+  // Stay near center, biased opposite the car
   const boardX = -carX * 0.20;
   const boardY = 0.48;
-  // Larger Z brings it closer to the camera (camera z ~ 4.2)
+  // Larger Z bring the board closer to the camera
   const boardZ = 1.85;
 
   useEffect(() => {
@@ -726,7 +726,6 @@ function WorldBoard({
     const sectionEl = sections[idx];
     if (!sectionEl) return;
 
-    // Measure the currently-active content node. This avoids stale refs during AnimatePresence exit.
     const activeContentEl = container.querySelector<HTMLElement>(`[data-worldboard-section="${idx}"]`);
 
     const containerH = container.clientHeight;
@@ -735,14 +734,12 @@ function WorldBoard({
     const prevScrollRange = lastScrollRangeBySectionRef.current[idx] ?? 0;
     const scrollRange = Math.max(0, contentH - containerH);
 
-    // Cache last known good range so transitions never briefly map from 0.
     if (scrollRange > 0 || prevScrollRange === 0) {
       lastScrollRangeBySectionRef.current[idx] = scrollRange;
     }
     const effectiveScrollRange =
       scrollRange > 0 ? scrollRange : lastScrollRangeBySectionRef.current[idx] ?? 0;
 
-    // Tell the page how tall this checkpoint must be so page scroll reveals full content.
     if (onSectionHeight) {
       const desiredHeight = window.innerHeight + effectiveScrollRange;
       const lastReported = lastReportedHeightBySectionRef.current[idx] ?? 0;
@@ -753,11 +750,8 @@ function WorldBoard({
     }
 
     const sectionTop = sectionEl.getBoundingClientRect().top + window.scrollY;
-    // Pixel-perfect mapping: page scroll inside the section maps 1:1 to content scroll.
-    // This avoids any snap when checkpoint heights update.
     const offsetPx = window.scrollY - sectionTop;
     const y = offsetPx < 0 ? 0 : offsetPx > effectiveScrollRange ? effectiveScrollRange : offsetPx;
-    // Translate content up inside the fixed viewport.
     translateEl.style.transform = `translate3d(0, ${-y}px, 0)`;
   };
 
