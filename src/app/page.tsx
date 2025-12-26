@@ -35,7 +35,7 @@ export default function Home() {
       </div>
       <p className="text-center py-2 mt-4 mb-2">
         &copy; {new Date().getFullYear()} Kevin Farokhrouz. All Rights Reserved. 
-        <a href="/breakdown" className="ml-2 hover:underline">
+        <a href="/secret" className="ml-2 hover:underline font-bold text-red-400">
           Do NOT click me.
         </a>
       </p>

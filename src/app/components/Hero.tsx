@@ -4,16 +4,15 @@ import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { Typed } from 'react-typed';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 
 import { primaryFont } from '../utils/fonts';
 import BouncingChevron from './BouncingChevron';
 
 const roles = [
   'Computer Science Student',
-  'SWE Research Assistant',
-  'Director @ ACM Create',
-  'Full-Stack Developer',
+  'AI SWE Intern @ Skyryse',
+  'Vice President @ ACM Create',
   'AI Enthusiast',
   'Perpetual Learner',
 ];

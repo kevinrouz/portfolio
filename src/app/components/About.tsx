@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { primaryFont } from '../utils/fonts';
 import BouncingChevron from './BouncingChevron';
 import { FaJava, FaPython, FaReact, FaGithub, FaNodeJs, FaGitAlt } from 'react-icons/fa';
-import { SiFlask, SiTypescript, SiJavascript, SiTailwindcss, SiKubernetes, SiMongodb, SiFirebase, SiPostgresql, SiMysql, SiCplusplus, SiUnrealengine, SiUnity, SiKotlin, SiDart, SiFastapi } from 'react-icons/si';
+import { SiFlask, SiTypescript, SiJavascript, SiTailwindcss, SiKubernetes, SiMongodb, SiPostgresql, SiMysql, SiCplusplus, SiFastapi, SiLangchain, SiDeepgram} from 'react-icons/si';
 import { TbBrandNextjs } from 'react-icons/tb';
+import { FaGripLinesVertical } from "react-icons/fa";
+import { SiCursor, SiCerebras, SiGroq } from './icons/CustomIcons';
 import { CiDatabase } from "react-icons/ci";
 
 const categories = [
@@ -18,9 +20,6 @@ const categories = [
       { name: 'TypeScript', icon: <SiTypescript /> },
       { name: 'SQL', icon: <CiDatabase /> },
       { name: 'C/C++', icon: <SiCplusplus /> },
-      { name: 'Kotlin', icon: <SiKotlin /> },
-      { name: 'Dart', icon: <SiDart /> },
-
     ],
   },
   {
@@ -41,14 +40,22 @@ const categories = [
       { name: 'Git', icon: <FaGitAlt /> },
       { name: 'GitHub', icon: <FaGithub /> },
       { name: 'Kubernetes', icon: <SiKubernetes /> },
-      { name: 'Firebase', icon: <SiFirebase /> },
       { name: 'PostgreSQL', icon: <SiPostgresql /> },
       { name: 'MongoDB', icon: <SiMongodb /> },
       { name: 'MySQL', icon: <SiMysql /> },
-      { name: 'Unreal Engine', icon: <SiUnrealengine /> }, 
-      { name: 'Unity', icon: <SiUnity /> },
     ],
   },
+  {
+    title: 'AI Tools',
+    items: [
+      { name: 'LangChain', icon: <SiLangchain /> },
+      { name: 'ElevenLabs', icon: <FaGripLinesVertical /> },
+      { name: 'Deepgram', icon: <SiDeepgram /> },
+      { name: 'Cerebras', icon: <SiCerebras size={24}/> },
+      { name: 'Groq', icon: <SiGroq size={28}/> },
+      { name: 'Cursor', icon: <SiCursor size={28}/> },
+    ],
+  }
 ];
 
 
@@ -75,24 +82,22 @@ export default function About() {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
       >
-        Hey, I&apos;m Kevin! I&apos;m a third-year Computer Science student passionate about software engineering,
-        AI, and creating meaningful digital experiences. With a focus on full-stack development and leading teams,
-        my goal is to build innovative solutions that have a real impact. In my free time,
-        I enjoy exploring web development, diving into machine learning, and picking up knowledge
-        on just about anything that sparks my curiosity.
+        Hey, I&apos;m Kevin! I&apos;m a fourth-year Computer Science student at UTA.
+        I love building new things, reading the latest research in Machine Learning and AI, 
+        and leading teams to success. In my free time, I enjoy philosophy, photography, and collecting hot wheels.
       </motion.p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 w-full max-w-6xl mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 w-full max-w-5xl mb-8">
         {categories.map((category, idx) => (
           <motion.div
             key={idx}
-            className="bg-gray-800 rounded-lg p-6 text-left"
+            className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-8 text-left border border-gray-700 shadow-xl hover:border-blue-400 transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: 'easeOut' }}
           >
             <h3
-              className="text-xl text-center font-bold text-blue-400 mb-12 transition-colors duration-300 hover:text-blue-500"
+              className="text-2xl text-center font-bold text-white mb-8 pb-3 border-b-2 border-blue-400"
             >
               {category.title}
             </h3>
@@ -100,10 +105,10 @@ export default function About() {
               {category.items.map((item, index) => (
                 <li
                   key={index}
-                  className="flex flex-col items-center text-gray-200 space-y-2"
+                  className="flex flex-col items-center text-gray-200 space-y-2 hover:text-blue-400 transition-colors duration-200 cursor-default"
                 >
-                  <span className="text-2xl text-blue-400">{item.icon}</span>
-                  <span className="text-center">{item.name}</span>
+                  <span className="text-3xl text-blue-400 hover:scale-110 transition-transform duration-200">{item.icon}</span>
+                  <span className="text-center text-sm font-medium">{item.name}</span>
                 </li>
               ))}
             </ul>

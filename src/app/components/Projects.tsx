@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useInView } from 'react-intersection-observer';
 import { SiGooglecalendar, SiDiscord, SiGithub, SiUnrealengine, SiMongodb, SiFastapi, SiNextdotjs, SiSqlite, SiChartdotjs, SiTypescript, SiTailwindcss, SiPython, SiCplusplus, SiFlutter, SiDart, SiFirebase, SiFlask, SiPlotly, SiTensorflow, SiNumpy, SiPandas, SiGooglemaps, SiScikitlearn } from 'react-icons/si';
 import { primaryFont } from '../utils/fonts';
@@ -71,7 +71,7 @@ export default function Projects() {
   return (
     <section className="py-20 px-4 md:px-8">
       <h2 className={`text-3xl md:text-4xl font-bold mb-12 text-center ${primaryFont}`}>Projects</h2>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
         {projects.map((project) => (
           <ProjectCard key={project.id} {...project} />
         ))}
@@ -138,15 +138,13 @@ function ProjectCard({
         initial={{ opacity: 0, y: 50 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.5 }}
-        className={`bg-gray-800 p-6 rounded-lg shadow-lg transform transition-all duration-300 ease-out ${primaryFont}`}
+        className={`bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-xl transform transition-all duration-300 ease-out border border-gray-700 flex flex-col ${primaryFont}`}
         whileHover={{
-          scale: 1.05,
-          y: -10,
-          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-          backgroundColor: "#4A5568",
+          boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)",
+          borderColor: "#60A5FA",
         }}
       >
-        <div className="relative w-full aspect-w-16 aspect-h-9 mb-4">
+        <div className="relative w-full aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
           <Image
             src={image}
             alt={title}
@@ -155,26 +153,26 @@ function ProjectCard({
             className="rounded-lg"
           />
         </div>
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <h3 className="text-2xl font-bold mb-3 text-white">{title}</h3>
         <div className="flex flex-wrap gap-2 mb-4">
         {techstack.map((tech) => (
           <span
             key={tech}
-            className="bg-gray-700 text-white text-sm px-3 py-1 rounded-full shadow-sm flex items-center gap-2"
+            className="bg-gray-700/50 text-gray-200 text-xs px-2.5 py-1 rounded-md shadow-sm flex items-center gap-1.5 border border-gray-600 hover:border-blue-400 transition-colors duration-200"
           >
-            <span className="text-blue-400">{techIcons[tech] || null}</span>
-            {tech}
+            <span className="text-blue-400 text-sm">{techIcons[tech] || null}</span>
+            <span className="font-medium">{tech}</span>
           </span>
         ))}
         </div>
-        <p className="text-gray-300 mb-4">{description}</p>
-        <div className="flex gap-4">
+        <p className="text-gray-300 mb-6 flex-grow leading-relaxed">{description}</p>
+        <div className="flex gap-3 mt-auto">
           {repo && (
             <a
               href={repo}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-700 hover:bg-blue-700 text-white py-2 px-4 rounded-lg shadow-md text-sm font-medium flex-1 text-center"
+              className="bg-blue-600 hover:bg-blue-500 text-white py-2.5 px-4 rounded-lg shadow-md text-sm font-semibold flex-1 text-center transition-all duration-200 hover:shadow-lg"
             >
               Repository
             </a>
@@ -184,9 +182,9 @@ function ProjectCard({
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-700 hover:bg-green-700 text-white py-2 px-4 rounded-lg shadow-md text-sm font-medium flex-1 text-center"
+              className="bg-green-600 hover:bg-green-500 text-white py-2.5 px-4 rounded-lg shadow-md text-sm font-semibold flex-1 text-center transition-all duration-200 hover:shadow-lg"
             >
-              Live
+              Live Demo
             </a>
           )}
         </div>
