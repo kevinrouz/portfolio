@@ -12,7 +12,7 @@ const projects = [
     techstack: ['Next.js', 'SQLite', 'Chart.js', 'Typescript', 'Tailwind CSS'],
     repo: 'https://github.com/acmuta/mavgrades',
     link: 'https://www.mavgrades.com/',
-    description: 'Project director and lead developer: A platform for UTA students to view and compare course/professor grade distributions. Trusted by over 5,000 students.',
+    description: 'Project director and lead developer: A platform for UTA students to view and compare course/professor grade distributions. Trusted by over 20,000 students.',
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const projects = [
     title: 'Multi-layered Network (MLN) Dashboard',
     techstack: ['Flask', 'Python', 'C++', 'SQLite', 'Plotly', 'Bokeh', 'NetworkX', 'Pyviz'],
     link: 'https://itlab.uta.edu/mlndash-live/',
-    description: 'Lead developer: A platform for the analysis and visualization of large datasets using Multi-Layered Networks.',
+    description: 'Lead developer: A platform for the analysis and visualization of large datasets using Multi-Layered Networks. Backed by published research.',
   },
   {
     id: 3,

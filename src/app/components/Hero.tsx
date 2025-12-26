@@ -13,7 +13,7 @@ const roles = [
   'Computer Science Student',
   'AI SWE Intern @ Skyryse',
   'Vice President @ ACM Create',
-  'AI Enthusiast',
+  'AI Enthusiast',  
   'Perpetual Learner',
 ];
 
@@ -46,7 +46,7 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
       >
         <Image
-          src="/kevinphoto1.jpg"
+          src="/kevin.jpg"
           alt="Kevin Farokhrouz - Photo"
           width={256}
           height={256}

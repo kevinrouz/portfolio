@@ -1,5 +1,10 @@
-// components/icons/CustomIcons.tsx
-export const SiCursor = (props: any) => (
+import { SVGProps } from "react";
+
+interface IconProps extends SVGProps<SVGSVGElement> {
+  size?: string | number;
+}
+
+export const SiCursor = (props: IconProps) => (
   <svg
     stroke="currentColor"
     fill="currentColor"
@@ -14,7 +19,7 @@ export const SiCursor = (props: any) => (
   </svg>
 );
 
-export const SiCerebras = (props: any) => (
+export const SiCerebras = (props: IconProps) => (
   <svg
     stroke="currentColor"
     fill="currentColor"
@@ -30,7 +35,7 @@ export const SiCerebras = (props: any) => (
   </svg>
 );
 
-export const SiGroq = (props: any) => (
+export const SiGroq = (props: IconProps) => (
   <svg
     stroke="currentColor"
     fill="currentColor"
