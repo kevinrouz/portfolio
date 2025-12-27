@@ -51,10 +51,8 @@ const ProgressBar: React.FC<ProgressBarProps> = React.memo(({ activeSection }) =
   useEffect(() => {
     if (totalSections <= 0) return;
 
-    // Confetti only once per arrival at the last section.
     const isLast = activeSection === totalSections - 1;
     
-    // Reset the ref when not on last section
     if (!isLast) {
       lastConfettiSectionRef.current = null;
       return;
@@ -65,7 +63,6 @@ const ProgressBar: React.FC<ProgressBarProps> = React.memo(({ activeSection }) =
 
     if (!carRef.current) return;
     
-    // Use RAF for better timing
     requestAnimationFrame(() => {
       if (!carRef.current) return;
       const carPosition = carRef.current.getBoundingClientRect();

@@ -603,7 +603,7 @@ function CarGLTF() {
     if (Math.abs(rotationSpeed) > 0.001) {
       const rotation = rotationSpeed * delta;
       for (let i = 0; i < wheels.length; i++) {
-        wheels[i].rotateX(rotation);
+        wheels[i].rotateX(-rotation);
       }
     }
   });
